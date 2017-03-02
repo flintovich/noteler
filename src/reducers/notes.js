@@ -5,6 +5,7 @@ const initialState = {
 const getNewNotes = (notes, action) => {
   const newNote = {
     id: action.id,
+    title: action.title,
     text: action.text
   };
   return [...notes, newNote];

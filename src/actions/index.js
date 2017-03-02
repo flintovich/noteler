@@ -1,7 +1,8 @@
-export const addNote = text => (
+export const addNote = (title, text) => (
   {
     type: 'ADD_NOTE',
     id: Date.now(),
+    title,
     text
   }
 );

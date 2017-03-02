@@ -1,56 +1,51 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 //import { EditorState } from 'draft-js';
-import { addNote } from '../actions';
-import MyEditor from './MyEditor';
+//import MyEditor from './MyEditor';
+import Tabs from './Tabs';
+import SimpleText from './SimpleText';
+import TestComponent from './TestComponent';
 
-const ENTER_KEY_CODE = 13;
 
-@connect(null, { addNote })
 class NewNote extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            text: '',
-            //editorState: EditorState.createEmpty()
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: '',
+      category: ''
+      //editorState: EditorState.createEmpty()
+    };
 
-        this.AddNewNote = this.AddNewNote.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleKeyDown = this.handleKeyDown.bind(this);
-    }
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
+  }
 
-    handleChange(e) {
-        this.setState({
-            text: e.target.value
-        });
-    }
+  handleChangeCategory(e) {
+    this.setState({
+      category: e.target.value
+    });
+  }
 
-    handleKeyDown(e) {
-        if(e.keyCode === ENTER_KEY_CODE) {
-            this.AddNewNote();
-        }
-    }
-
-    AddNewNote() {
-        this.props.addNote(this.state.text);
-        this.setState({
-            text: ''
-        });
-    }
-
-
-    render() {
-        return (
-            <div className="new-note">
-                <textarea cols="30" rows="10" placeholder="Text here..."
-                          onChange={this.handleChange}
-                          onKeyDown={this.handleKeyDown} value={this.state.text}/>
-                <button onClick={this.AddNewNote}>ADD</button>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="new-note">
+        <form>
+          <FormGroup controlId="formControlsSelect">
+            <ControlLabel>Select Note category</ControlLabel>
+            <FormControl onChange={this.handleChangeCategory} componentClass="select" placeholder="Select category">
+              <option>Select category</option>
+              <option value="text">Simple note</option>
+              <option value="other">other</option>
+            </FormControl>
+          </FormGroup>
+          <Tabs activeTab={this.state.category}>
+            <SimpleText tabId="text" toggleModalState={this.props.toggleModalState}/>
+            <TestComponent tabId="other"/>
+          </Tabs>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default NewNote;
