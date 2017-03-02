@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'
+import { Grid } from 'react-bootstrap';
 
 import Menu from './Menu';
 import Modal from './Modal';
@@ -28,7 +29,9 @@ class App extends Component {
         <Modal toggleModalState={this.toggleModalState}
           isOpen={this.state.isModalOpen}
           modalType="createNewNote"/>
-        {this.props.children}
+        <Grid>
+          {this.props.children}
+        </Grid>
       </div>
     );
   }

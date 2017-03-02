@@ -8,7 +8,7 @@ const getNewNotes = (notes, action) => {
     title: action.title,
     text: action.text
   };
-  return [...notes, newNote];
+  return [newNote, ...notes];
 };
 
 export default function todos(state = initialState, action) {
