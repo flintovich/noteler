@@ -36,7 +36,12 @@ class SimpleText extends Component {
 
   addNewNote() {
     const foldersTree = JSON.parse(JSON.stringify(this.props.foldersTree));
-    const newFolderTree = newNoteUtils.updateFolderTree(this.props.folder, this.state.noteTitle, foldersTree, false);
+    const newFolderTree = newNoteUtils.updateFolderTree(
+      this.props.folder,
+      this.state.noteTitle,
+      JSON.parse(JSON.stringify(foldersTree)),
+      false
+    );
 
     this.props.addNote(this.state.noteTitle, this.state.noteText, this.props.folder);
     this.props.updateFoldersTree(newFolderTree);

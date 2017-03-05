@@ -7,6 +7,7 @@ import Tabs from './Tabs';
 import SimpleText from './SimpleText';
 import TestComponent from './TestComponent';
 import newNoteUtils from '../utils/newNote';
+import { MAIN_FOLDER } from '../constants';
 
 @connect(mapStateToProps)
 class NewNote extends Component {
@@ -16,12 +17,17 @@ class NewNote extends Component {
     this.state = {
       text: '',
       type: '',
-      folder: '',
+      folder: MAIN_FOLDER,
       //editorState: EditorState.createEmpty()
     };
 
     this.handleChangeType = this.handleChangeType.bind(this);
     this.handleChangeFolder = this.handleChangeFolder.bind(this);
+  }
+
+  componentWillMount() {
+    const foldersTree = JSON.parse(JSON.stringify(this.props.folders));
+    this.folderTree = newNoteUtils.objectToSelectOptions(foldersTree)
   }
 
   handleChangeType(e) {
@@ -45,8 +51,7 @@ class NewNote extends Component {
           <FormGroup controlId="formControlsSelect">
             <ControlLabel>Select Note Folder</ControlLabel>
             <FormControl onChange={this.handleChangeFolder} componentClass="select" placeholder="Select type">
-              <option value="Main Folder">Main Folder</option>
-              {newNoteUtils.objectToSelectOptions(this.props.folders)}
+              {this.folderTree}
             </FormControl>
           </FormGroup>
           <FormGroup controlId="formControlsSelect">

@@ -1,53 +1,11 @@
+import { MAIN_FOLDER } from '../constants';
+
 const initialState = {
-  categories: {
-    name: 'Main Folder',
+  categories: [{
+    name: MAIN_FOLDER,
     toggled: true,
-    children: [
-      {
-        name: 'folder 1',
-        children: [
-          {
-            name: 'child1',
-          }
-        ]
-      },
-      {
-        name: 'Luxoft',
-        children: [
-          {
-            name: 'work specs',
-            children: [
-              {
-                name: 'MCPM',
-                children: [
-                  {
-                    name: 'spec 1'
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        name: 'Links to videos',
-        children: [
-          {
-            name: 'vk',
-            children: [
-              {
-                name: 'http://anekdotu.info',
-              }
-            ]
-          },
-          {
-            name: 'youtube',
-            children: []
-          },
-        ]
-      }
-    ]
-  }
+    children: []
+  }]
 };
 
 export default function categories(state = initialState, action) {
@@ -67,7 +25,7 @@ export default function categories(state = initialState, action) {
     case 'UPDATE_FOLDERS_TREE': {
       return {
         ...state,
-        categories: {...action.dataList}
+        categories: [...action.dataList]
       };
     }
 
