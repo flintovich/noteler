@@ -10,7 +10,7 @@ class Menu extends Component {
 
   render() {
     return (
-      <Navbar>
+      <Navbar inverse>
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/home">Noteler</Link>
@@ -18,7 +18,8 @@ class Menu extends Component {
         </Navbar.Header>
         <Nav>
           <NavItem eventKey={1}><Link to="/home">Home</Link></NavItem>
-          <NavItem eventKey={2} onClick={this.props.toggleModalState.bind(this, true)}>Create Note</NavItem>
+          <NavItem eventKey={2} onClick={this.props.toggleModalState.bind(this, true, 'createNewCategory')}>Create Category</NavItem>
+          <NavItem eventKey={3} onClick={this.props.toggleModalState.bind(this, true, 'createNewNote')}>Create Note</NavItem>
         </Nav>
       </Navbar>
     );

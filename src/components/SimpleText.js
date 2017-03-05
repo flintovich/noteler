@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { FormGroup, ControlLabel, FormControl, Button, HelpBlock, Panel } from 'react-bootstrap';
+import newNoteUtils from '../utils/newNote';
 
-import { addNote } from '../actions';
+import { addNote, updateFoldersTree } from '../actions';
 
-@connect(null, { addNote })
+@connect(mapStateToProps, { addNote, updateFoldersTree })
 class SimpleText extends Component {
 
   constructor(props) {
@@ -34,12 +35,13 @@ class SimpleText extends Component {
   }
 
   addNewNote() {
-    this.props.addNote(this.state.noteTitle, this.state.noteText);
+    this.props.addNote(this.state.noteTitle, this.state.noteText, this.props.folder);
+    const foldersTree = Object.assign({}, this.props.foldersTree, { test: 'Vasya' });
+    newNoteUtils.updateFolderTree(this.props.folder, this.state.noteTitle, foldersTree);
     this.props.toggleModalState(false);
   }
 
   render() {
-
     const { noteText, noteTitle } = this.state;
 
     return (
@@ -62,6 +64,13 @@ class SimpleText extends Component {
 }
 
 export default SimpleText;
+
+function mapStateToProps(state) {
+  console.log(12, state);
+  return {
+    foldersTree: state.categories.categories
+  }
+}
 
 function FieldGroup({ id, label, help, ...props }) {
   return (

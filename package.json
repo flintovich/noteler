@@ -18,6 +18,9 @@
     "react-dom": "^15.4.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
+    "react-sortable-tree": "^0.1.12",
+    "react-treebeard": "^1.1.4",
+    "react-ui-tree": "^2.6.0",
     "redux": "^3.6.0"
   },
   "devDependencies": {

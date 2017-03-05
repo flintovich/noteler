@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'
-import { Grid } from 'react-bootstrap';
 
 import Menu from './Menu';
 import Modal from './Modal';
@@ -11,14 +10,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModalOpen: false
+      isModalOpen: false,
+      type: '',
     };
     this.toggleModalState = this.toggleModalState.bind(this);
   }
 
-  toggleModalState(visible) {
+  toggleModalState(visible, type) {
     this.setState({
-      isModalOpen: visible
+      isModalOpen: visible,
+      type: type ? type : ''
     });
   }
 
@@ -28,10 +29,8 @@ class App extends Component {
         <Menu toggleModalState={this.toggleModalState}/>
         <Modal toggleModalState={this.toggleModalState}
           isOpen={this.state.isModalOpen}
-          modalType="createNewNote"/>
-        <Grid>
+          modalType={this.state.type}/>
           {this.props.children}
-        </Grid>
       </div>
     );
   }

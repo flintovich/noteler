@@ -24,11 +24,15 @@ class ModalWindow extends Component {
     if(hash[modalType]) {
       return hash[modalType];
     }
+
+    return {
+      title: '',
+      content: ''
+    };
   }
 
   render() {
     const { isOpen, toggleModalState, modalType } = this.props;
-
     return (
       <Modal
         show={isOpen}
