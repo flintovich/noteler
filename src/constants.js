@@ -1,1 +1,1 @@
-export const MAIN_FOLDER = 'Main Folder';
+export const MAIN_FOLDER = 'Main';

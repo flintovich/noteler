@@ -9,7 +9,7 @@ class TestComponent extends Component {
 
   render() {
     return (
-      <div>Test component</div>
+      <div>Not Found</div>
     );
   }
 }
