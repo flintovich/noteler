@@ -18,8 +18,8 @@ class Menu extends Component {
         </Navbar.Header>
         <Nav>
           <NavItem eventKey={1}><Link to="/home">Home</Link></NavItem>
-          <NavItem eventKey={2} onClick={this.props.toggleModalState.bind(this, true, 'createNewCategory')}>Create Category</NavItem>
-          <NavItem eventKey={3} onClick={this.props.toggleModalState.bind(this, true, 'createNewNote')}>Create Note</NavItem>
+          <NavItem eventKey={2} onClick={this.props.toggleModalState.bind(this, true, 'addNewFolder')}>Add Folder</NavItem>
+          <NavItem eventKey={3} onClick={this.props.toggleModalState.bind(this, true, 'createNewNote')}>Add Note</NavItem>
         </Nav>
       </Navbar>
     );

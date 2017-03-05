@@ -45,7 +45,7 @@ class NewNote extends Component {
           <FormGroup controlId="formControlsSelect">
             <ControlLabel>Select Note Folder</ControlLabel>
             <FormControl onChange={this.handleChangeFolder} componentClass="select" placeholder="Select type">
-              <option>Select folder</option>
+              <option value="Main Folder">Main Folder</option>
               {newNoteUtils.objectToSelectOptions(this.props.folders)}
             </FormControl>
           </FormGroup>

@@ -18,18 +18,25 @@ class newNoteUtils {
     });
   }
 
-  updateFolderTree(folder, noteTitle, data) {
-    const noteData = {folder, noteTitle};
-    const folderData = Object.assign({}, data);
+  updateFolderTree(folder, noteTitle, data, isFolder) {
+    /* if isFolder is false ti means that is's note */
+    const noteData = {folder, noteTitle, isFolder};
+    const folderData = data;
     this.folderLoop(folderData, noteData);
-    console.log(1, folderData);
     return folderData;
   }
 
+  /* TODO need to refactor */
   folderLoop(data, noteData) {
     data.children.forEach((item) => {
       if(item.name === noteData.folder) {
-        item.children = [...item.children, { name: noteData.noteTitle }];
+        const newItem = noteData.isFolder ? {
+          name: noteData.noteTitle,
+          children: []
+        } : {
+          name: noteData.noteTitle
+        };
+        item.children = [...item.children, newItem];
       } else if (item.children && item.name !== noteData.folder) {
         this.folderLoop(item, noteData);
       }

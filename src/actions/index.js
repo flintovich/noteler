@@ -8,15 +8,14 @@ export const addNote = (title, text, folder) => (
   }
 );
 
-export const removeNote = id => (
-  {
-    type: 'REMOVE_NOTE',
-    id
+export const addFolder = dataList => {
+  return {
+    type: 'UPDATE_FOLDERS_TREE',
+    dataList
   }
-);
+};
 
 export const updateFoldersTree = dataList => {
-  console.log('-->', dataList);
   return {
     type: 'UPDATE_FOLDERS_TREE',
     dataList

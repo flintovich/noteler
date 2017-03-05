@@ -35,9 +35,11 @@ class SimpleText extends Component {
   }
 
   addNewNote() {
+    const foldersTree = JSON.parse(JSON.stringify(this.props.foldersTree));
+    const newFolderTree = newNoteUtils.updateFolderTree(this.props.folder, this.state.noteTitle, foldersTree, false);
+
     this.props.addNote(this.state.noteTitle, this.state.noteText, this.props.folder);
-    const foldersTree = Object.assign({}, this.props.foldersTree, { test: 'Vasya' });
-    newNoteUtils.updateFolderTree(this.props.folder, this.state.noteTitle, foldersTree);
+    this.props.updateFoldersTree(newFolderTree);
     this.props.toggleModalState(false);
   }
 
@@ -66,7 +68,6 @@ class SimpleText extends Component {
 export default SimpleText;
 
 function mapStateToProps(state) {
-  console.log(12, state);
   return {
     foldersTree: state.categories.categories
   }

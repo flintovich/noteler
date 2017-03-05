@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal, Nav, NavItem, Button } from 'react-bootstrap';
 
 import NewNote from './NewNote';
+import NewFolder from './NewFolder';
 
 class ModalWindow extends Component {
 
@@ -16,8 +17,12 @@ class ModalWindow extends Component {
   getModalContent(modalType) {
     const hash = {
       createNewNote: {
-        title: 'Create New Note',
+        title: 'Add New Note',
         content: <NewNote toggleModalState={this.props.toggleModalState}/>
+      },
+      addNewFolder: {
+        title: 'Add New Folder',
+        content: <NewFolder toggleModalState={this.props.toggleModalState}/>
       }
     };
 
