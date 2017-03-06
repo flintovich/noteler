@@ -1,6 +1,6 @@
 import { MAIN_FOLDER } from '../constants';
 
-const initialState = {
+const initialState = JSON.parse(localStorage.getItem('foldersTree')) || {
   categories: [{
     name: MAIN_FOLDER,
     toggled: true,
@@ -23,10 +23,13 @@ export default function categories(state = initialState, action) {
     }
 
     case 'UPDATE_FOLDERS_TREE': {
-      return {
+      const newFoldersTree = {
         ...state,
         categories: [...action.dataList]
       };
+
+      localStorage.setItem('foldersTree', JSON.stringify(newFoldersTree));
+      return newFoldersTree;
     }
 
     default: {

@@ -25,14 +25,14 @@ class HomePage extends Component {
   render() {
     const { folderName } = this.props.routeParams;
     return (
-      <Col xs={10} md={8} sm={8}>
-        <h2>
+      <div>
+        <h3>
           {folderName
             ? `Notes from "${folderName}" folder:`
             : 'All Notes list:'}
-        </h2>
+        </h3>
         {this.getNotesList(folderName)}
-      </Col>
+      </div>
     );
   }
 }
