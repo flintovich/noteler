@@ -23,6 +23,15 @@ export default function notes(state = initialState, action) {
       return newNotesList;
     }
 
+    case 'EDIT_NOTE': {
+      console.log(1, action);
+      const newNotesList = {
+        ...state,
+        notes: getNewNotes(state.notes, action)
+      };
+      return newNotesList;
+    }
+
     default: {
       return state;
     }

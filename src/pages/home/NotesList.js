@@ -7,20 +7,37 @@ import moment from 'moment'
 @connect(mapStateToProps)
 class HomePage extends Component {
 
+    static contextTypes = {
+        router: React.PropTypes.object.isRequired,
+    };
+
+    constructor(props) {
+        super(props);
+    }
+
   getNotesList(folderName) {
     const notes = folderName
       ? this.props.notes.filter(item => item.folder === folderName)
       : this.props.notes;
 
     return notes.map(note => {
+        const header = (
+            <h4><b>{note.title}</b>  <i onClick={this.handleEditNote.bind(this, note.id)} className="fa fa-pencil-square-o" aria-hidden="true"></i></h4>
+        );
       return (
-        <Panel key={note.id} header={<h4>{note.title}</h4>} bsStyle="info">
+        <Panel key={note.id} header={header} bsStyle="info">
           <time>{moment(note.id).format('DD.MM.YYYY, HH:mm:ss')}</time>
           <div>{note.text}</div>
         </Panel>
       )
     });
   }
+
+    handleEditNote(noteId) {
+        //this.props.toggleModalState(true, 'editNote');
+        console.log(this.context);
+        this.context.router.push(`/folder/${this.props.location.pathname}/${noteId}`);
+    }
 
   render() {
     const { folderName } = this.props.routeParams;

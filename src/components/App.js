@@ -39,7 +39,13 @@ class App extends Component {
             <CategoriesTree folders={this.props.folders}/>
           </Col>
           <Col xs={10} md={8} sm={8}>
-            {this.props.children}
+            {
+              React.Children.map(this.props.children,
+                (child) => React.cloneElement(child, {
+                  toggleModalState: this.toggleModalState
+                })
+              )
+            }
           </Col>
         </Row>
       </div>

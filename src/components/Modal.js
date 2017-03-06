@@ -3,6 +3,7 @@ import { Modal, Nav, NavItem, Button } from 'react-bootstrap';
 
 import NewNote from './NewNote';
 import NewFolder from './NewFolder';
+import EditNote from './EditNote';
 
 class ModalWindow extends Component {
 
@@ -19,6 +20,10 @@ class ModalWindow extends Component {
       createNewNote: {
         title: 'Add New Note',
         content: <NewNote toggleModalState={this.props.toggleModalState}/>
+      },
+      editNote: {
+        title: 'Edit Note',
+        content: <EditNote toggleModalState={this.props.toggleModalState}/>
       },
       addNewFolder: {
         title: 'Add New Folder',
