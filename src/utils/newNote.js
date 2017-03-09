@@ -18,9 +18,9 @@ class newNoteUtils {
     });
   }
 
-  updateFolderTree(folder, noteTitle, data, isFolder) {
+  updateFolderTree(id, folder, noteTitle, data, isFolder) {
     /* if isFolder is false ti means that is's note */
-    const noteData = {folder, noteTitle, isFolder};
+    const noteData = {id, folder, noteTitle, isFolder};
     const folderData = [...data];
     this.folderLoop(folderData, noteData);
     return folderData;
@@ -34,12 +34,22 @@ class newNoteUtils {
           name: noteData.noteTitle,
           children: []
         } : {
+          id: noteData.id,
           name: noteData.noteTitle
         };
         item.children = [...item.children, newItem];
       } else if (item.children && item.name !== noteData.folder) {
         this.folderLoop(item.children, noteData);
       }
+    });
+  }
+
+  removeFileFromTree(data, id) {
+    return data.filter(item => {
+      if (item.children) {
+        item.children = this.removeFileFromTree(item.children, id);
+      }
+      return item.id !== id;
     });
   }
 

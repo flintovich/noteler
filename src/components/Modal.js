@@ -23,7 +23,8 @@ class ModalWindow extends Component {
       },
       editNote: {
         title: 'Edit Note',
-        content: <EditNote toggleModalState={this.props.toggleModalState}/>
+        content: <EditNote toggleModalState={this.props.toggleModalState}
+                           dataForModal={this.props.dataForModal}/>
       },
       addNewFolder: {
         title: 'Add New Folder',

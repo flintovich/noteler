@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'
-import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 
 import CategoriesTree from '../pages/home/CategoriesTree';
@@ -8,7 +7,6 @@ import CategoriesTree from '../pages/home/CategoriesTree';
 import Menu from './Menu';
 import Modal from './Modal';
 
-@connect(mapStateToProps)
 class App extends Component {
 
   constructor(props) {
@@ -16,31 +14,37 @@ class App extends Component {
     this.state = {
       isModalOpen: false,
       type: '',
+      dataForModal: {},
     };
     this.toggleModalState = this.toggleModalState.bind(this);
   }
 
-  toggleModalState(visible, type) {
+  toggleModalState(visible, type, data) {
     this.setState({
       isModalOpen: visible,
-      type: type ? type : ''
+      type: type ? type : '',
+      dataForModal: data ? data : {}
     });
   }
 
   render() {
+    const { isModalOpen, type, dataForModal } = this.state;
+    const { children } = this.props;
+
     return (
       <div className="home-page">
         <Menu toggleModalState={this.toggleModalState}/>
         <Modal toggleModalState={this.toggleModalState}
-               isOpen={this.state.isModalOpen}
-               modalType={this.state.type}/>
+               isOpen={isModalOpen}
+               dataForModal={dataForModal}
+               modalType={type}/>
         <Row className="show-grid">
           <Col xs={8} md={4} sm={4}>
-            <CategoriesTree folders={this.props.folders}/>
+            <CategoriesTree />
           </Col>
           <Col xs={10} md={8} sm={8}>
             {
-              React.Children.map(this.props.children,
+              React.Children.map(children,
                 (child) => React.cloneElement(child, {
                   toggleModalState: this.toggleModalState
                 })
@@ -54,9 +58,3 @@ class App extends Component {
 }
 
 export default App;
-
-function mapStateToProps(state) {
-  return {
-    folders: state.categories.categories
-  }
-}

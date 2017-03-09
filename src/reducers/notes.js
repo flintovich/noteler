@@ -23,8 +23,16 @@ export default function notes(state = initialState, action) {
       return newNotesList;
     }
 
+    case 'REMOVE_NOTE': {
+      const newNotesList = {
+        ...state,
+        notes: state.notes.filter(note => note.id !== action.id)
+      };
+      localStorage.setItem('notesList', JSON.stringify(newNotesList));
+      return newNotesList;
+    }
+
     case 'EDIT_NOTE': {
-      console.log(1, action);
       const newNotesList = {
         ...state,
         notes: getNewNotes(state.notes, action)

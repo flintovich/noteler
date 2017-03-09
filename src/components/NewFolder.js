@@ -39,8 +39,10 @@ class NewNote extends Component {
   }
 
   addNewFolder() {
+    const folderId = Date.now();
     const foldersTree = JSON.parse(JSON.stringify(this.props.foldersTree));
     const newFolderTree = newNoteUtils.updateFolderTree(
+      folderId,
       this.state.parentFolder,
       this.state.newFolderName,
       JSON.parse(JSON.stringify(foldersTree)),

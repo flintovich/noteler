@@ -35,15 +35,17 @@ class SimpleText extends Component {
   }
 
   addNewNote() {
+    const noteId = Date.now();
     const foldersTree = JSON.parse(JSON.stringify(this.props.foldersTree));
     const newFolderTree = newNoteUtils.updateFolderTree(
+      noteId,
       this.props.folder,
       this.state.noteTitle,
       JSON.parse(JSON.stringify(foldersTree)),
       false
     );
 
-    this.props.addNote(this.state.noteTitle, this.state.noteText, this.props.folder);
+    this.props.addNote(noteId, this.state.noteTitle, this.state.noteText, this.props.folder);
     this.props.updateFoldersTree(newFolderTree);
     this.props.toggleModalState(false);
   }

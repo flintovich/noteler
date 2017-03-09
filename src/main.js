@@ -12,7 +12,6 @@ const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={NotesList}/>
     <Route path="folder/:folderName" component={NotesList}/>
-    <Route path="folder/:folderName/:editingFileName" component={NotesList}/>
     <Route path="*" component={TestComponent}/>
   </Route>
 );

@@ -1,10 +1,17 @@
-export const addNote = (title, text, folder) => (
+export const addNote = (id, title, text, folder) => (
   {
     type: 'ADD_NOTE',
-    id: Date.now(),
+    id,
     title,
     text,
-    folder,
+    folder
+  }
+);
+
+export const removeNote = (id) => (
+  {
+    type: 'REMOVE_NOTE',
+    id
   }
 );
 
@@ -14,16 +21,16 @@ export const editNote = (id, title, text, folder) => (
     id,
     title,
     text,
-    folder,
+    folder
   }
 );
 
-export const addFolder = dataList => {
-  return {
-    type: 'UPDATE_FOLDERS_TREE',
-    dataList
+export const removeFileFromTree = (id) => (
+  {
+    type: 'REMOVE_FILE_FROM_TREE',
+    id
   }
-};
+);
 
 export const updateFoldersTree = dataList => {
   return {

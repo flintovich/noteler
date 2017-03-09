@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Treebeard, decorators } from 'react-treebeard';
+import { connect } from 'react-redux';
 
 import './home.css';
 
+@connect(mapStateToProps)
 class CategoriesTree extends Component {
+
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired
+  };
 
   constructor(props) {
     super(props);
@@ -49,6 +55,7 @@ class CategoriesTree extends Component {
 
   render() {
     const { folders } = this.props;
+
     return (
       <Treebeard
         data={folders}
@@ -61,6 +68,9 @@ class CategoriesTree extends Component {
 
 export default CategoriesTree;
 
-CategoriesTree.contextTypes = {
-  router: React.PropTypes.object.isRequired
-};
+
+function mapStateToProps(state) {
+  return {
+    folders: state.categories.categories
+  }
+}

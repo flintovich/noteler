@@ -42,7 +42,6 @@ class EditNote extends Component {
 
   render() {
     const { type, folder } = this.state;
-
     return (
       <div className="new-note">
         <form>
